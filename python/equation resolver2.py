@@ -1,3 +1,5 @@
+#this program coded in Python can solve equations in second degree.
+
 from tkinter import *
 from math import sqrt
 
