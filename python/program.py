@@ -1,4 +1,6 @@
 from tkinter import *
+# // from tkinter import * // doesn't import messagebox it has to be explicitly imported
+from tkinter import messagebox
 from math import *
 
 def info():
