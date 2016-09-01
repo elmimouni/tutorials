@@ -2,41 +2,27 @@ from tkinter import *
 # // from tkinter import * // doesn't import messagebox it has to be explicitly imported
 from tkinter import messagebox
 from math import *
+from optparse import OptionParser
 
-def info():
-    messagebox.showinfo("Info", "Equations resolver v1.3 est un programme créé par Abderrahmane El Mimouni.""\n""Et encadré par El Hassan El Mimouni.")
+def about():
+    messagebox.showinfo("Info", "Equations solver v1.3 is a program that solves 1st and 2nd degree equations.""\n""Created by Abderrahmane El Mimouni and supervised by El Hassan El Mimouni.")
 
-def aide():
-    messagebox.showinfo("Info", "En cours de développement.")
+def help():
+    messagebox.showinfo("Info", "Coming soon...")
 
 def equation1():
-    global fen
-
-    def tout_refaire():
-        global txt0, txt1, txt2, txt3, txt4, entr1, entr2, entr3, entr4, btn1, btn2, btn3
+    
+    def back():
         
-        txt0.destroy()
-        txt1.destroy()
-        txt2.destroy()
-        txt3.destroy()
-        txt4.destroy()
-        entr1.destroy()
-        entr2.destroy()
-        entr3.destroy()
-        entr4.destroy()
-        btn1.destroy()
-        btn2.destroy()
-        btn3.destroy()
+        destroyWidgets()
         
-    def refaire():
-        global entr1, entr2, entr3, entr4
+    def reset():
         entr1.delete(0, END)
         entr2.delete(0, END)
         entr3.delete(0, END)
         entr4.delete(0, END)
     
-    def Calculer():
-        global fen, entr1, entr2, entr3, entr4, btn1
+    def solve():
 
         try:
             a = int(entr1.get())
@@ -53,19 +39,19 @@ def equation1():
         except ZeroDivisionError:
             messagebox.showerror("Erreur", "Erreur de division par 0")
 
-    def CreateWidgets():
-        global fen, txt0, txt1, txt2, txt3, txt4, entr1, entr2, entr3, entr4, btn1, btn2, btn3
+    def createWidgets():
+        global txt0, txt1, txt2, txt3, txt4, entr1, entr2, entr3, entr4, btn1, btn2, btn3
 
-        txt0 = Label(fen, text = 'Equation ax + b = c', fg='red', font=('Times', 16, 'bold', 'italic'))
-        txt1 = Label(fen, text = 'a :', font=('Times', 12))
-        txt2 = Label(fen, text = 'b :', font=('Times', 12))
-        txt3 = Label(fen, text = 'c :', font=('Times', 12))
-        txt4 = Label(fen, text = 'x :', font=('Times', 12))
+        txt0 = Label(window, text = 'Equation ax + b = c', fg='red', font=('Times', 16, 'bold', 'italic'))
+        txt1 = Label(window, text = 'a :', font=('Times', 12))
+        txt2 = Label(window, text = 'b :', font=('Times', 12))
+        txt3 = Label(window, text = 'c :', font=('Times', 12))
+        txt4 = Label(window, text = 'x :', font=('Times', 12))
         
-        entr1 = Entry(fen, font=('Times', 12))
-        entr2 = Entry(fen, font=('Times', 12))
-        entr3 = Entry(fen, font=('Times', 12))
-        entr4 = Entry(fen, font=('Times', 12))
+        entr1 = Entry(window, font=('Times', 12))
+        entr2 = Entry(window, font=('Times', 12))
+        entr3 = Entry(window, font=('Times', 12))
+        entr4 = Entry(window, font=('Times', 12))
         
         entr1.delete(0, END)
         entr1.insert(0, "")
@@ -76,9 +62,9 @@ def equation1():
         entr4.delete(0, END)
         entr4.insert(0, "")
 
-        btn1 = Button(fen, text='Résoudre', font=('Times', 12), command=Calculer)
-        btn2 = Button(fen, text='Refaire', font=('Times', 12), command=refaire)
-        btn3 = Button(fen, text="Tout refaire", font=('Times', 12), command=tout_refaire)
+        btn1 = Button(window, text='Solve', font=('Times', 12), command=solve)
+        btn2 = Button(window, text='Reset', font=('Times', 12), command=reset)
+        btn3 = Button(window, text="Back", font=('Times', 12), command=back)
 
         txt0.grid(row =0, column =1)
         txt1.grid(row =1, column =0)
@@ -95,38 +81,31 @@ def equation1():
         btn2.grid(row =5, column =0)
         btn3.grid(row =6, column =1)
 
-    def main():
-        global fen, entr1, entr2, entr3, entr4, btn1
-        
-        CreateWidgets()
-
-    main()
-
-def equation2():
-    global fen
-    
-    def tout_supprimer():
-        
-        global txt0, txt01, txt1, txt2, txt3, txt4, txt5, entr1, entr2, entr3, entr4, entr5, btn1, btn2, btn3
-        
+    def destroyWidgets():
         txt0.destroy()
-        txt01.destroy()
         txt1.destroy()
         txt2.destroy()
         txt3.destroy()
         txt4.destroy()
-        txt5.destroy()
         entr1.destroy()
         entr2.destroy()
         entr3.destroy()
         entr4.destroy()
-        entr5.destroy()
         btn1.destroy()
         btn2.destroy()
         btn3.destroy()
+        
+    createWidgets()
+
+def equation2():
     
-    def supprimer():
-        global fen, entr1, entr2, entr3, entr4, entr5, txt4, txt5, delete
+    def back():
+        
+        destroyWidgets()
+        
+    
+    def reset():
+        global delete
         entr1.delete(0, END)
         entr2.delete(0, END)
         entr3.delete(0, END)
@@ -136,8 +115,7 @@ def equation2():
         txt5.destroy()
 
         
-    def calculer():
-        global fen, entr1, entr2, entr3, entr4, entr5, txt4, txt5
+    def solve():
 
         try:
             a = int(entr1.get())
@@ -157,7 +135,7 @@ def equation2():
                 entr5.insert(0, x2)
                 
             if (delta < 0):
-                messagebox.showinfo("Fin de l'exercice", "L'équation n'admet aucune solution!")
+                messagebox.showinfo("Result", "This equation does not have a solution!")
                     
             if (delta == 0):
                 x0 = (-b/2*a)
@@ -166,27 +144,26 @@ def equation2():
                 entr4.insert(0, x0)
 
         except ValueError:
-            messagebox.showerror("Erreur", "Erreur de valeur!")
+            messagebox.showerror("Error", "Value Error!")
             
     def alert():
-        messagebox.showinfo("Info", "Programme créé par Abderrahmane El Mimouni.""\n""Et encadré par El Hassan El Mimouni.")
+        messagebox.showinfo("Info", "Equations solver v1.3 is a program that solves 1st and 2nd degree equations.""\n""Created by Abderrahmane El Mimouni and supervised by El Hassan El Mimouni.")
         
-    def widgets():
-        global fen, txt0, txt01, txt1, txt2, txt3, txt4, txt5, entr1, entr2, entr3, entr4, entr5, btn1, btn2, btn3
-        
-        txt0 = Label(fen, text="équation", font=("Times", 16, "bold", "italic"), fg="red")
-        txt01 = Label(fen, text="ax² + bx + c = 0", font=("Times", 16, "bold", "italic"), fg="red")
-        txt1 = Label(fen, text="a:", font=("Times", 12))
-        txt2 = Label(fen, text="b:", font=("Times", 12))
-        txt3 = Label(fen, text="c:", font=("Times", 12))
-        txt4 = Label(fen, text="x1:", font=("Times", 12))
-        txt5 = Label(fen, text="x2:", font=("Times", 12))
+    def createWidgets():
+        global txt0, txt01, txt1, txt2, txt3, txt4, txt5, entr1, entr2, entr3, entr4, entr5, btn1, btn2, btn3
+        txt0 = Label(window, text="équation", font=("Times", 16, "bold", "italic"), fg="red")
+        txt01 = Label(window, text="ax² + bx + c = 0", font=("Times", 16, "bold", "italic"), fg="red")
+        txt1 = Label(window, text="a:", font=("Times", 12))
+        txt2 = Label(window, text="b:", font=("Times", 12))
+        txt3 = Label(window, text="c:", font=("Times", 12))
+        txt4 = Label(window, text="x1:", font=("Times", 12))
+        txt5 = Label(window, text="x2:", font=("Times", 12))
 
-        entr1 = Entry(fen, font=("Times", 12))
-        entr2 = Entry(fen, font=("Times", 12))
-        entr3 = Entry(fen, font=("Times", 12))
-        entr4 = Entry(fen, font=("Times", 12))
-        entr5 = Entry(fen, font=("Times", 12))
+        entr1 = Entry(window, font=("Times", 12))
+        entr2 = Entry(window, font=("Times", 12))
+        entr3 = Entry(window, font=("Times", 12))
+        entr4 = Entry(window, font=("Times", 12))
+        entr5 = Entry(window, font=("Times", 12))
 
         txt0.grid(row=0, column=0)
         txt01.grid(row=0, column=1)
@@ -198,37 +175,67 @@ def equation2():
         entr2.grid(row=2, column=1)
         entr3.grid(row=3, column=1)
 
-        btn1 = Button(fen, text="Résoudre", font=("Times", 13), command=calculer)
+        btn1 = Button(window, text="Solve", font=("Times", 13), command=solve)
         btn1.grid(row=6, column=1)
 
-        btn2= Button(fen, text="Refaire", font=("Times", 13), command=supprimer)
+        btn2= Button(window, text="Reset", font=("Times", 13), command=reset)
         btn2.grid(row=6, column=0)
 
-        btn3= Button(fen, text="Tout Refaire", font=("Times", 13), command=tout_supprimer)
+        btn3= Button(window, text="Back", font=("Times", 13), command=back)
         btn3.grid(row=7, column=1)
 
-    widgets()
+    def destroyWidgets():
+
+        for child in window.winfo_children():
+            print(child.cget('class'))
+            # child.destroy()
+
+        txt0.destroy()
+        txt01.destroy()
+        txt1.destroy()
+        txt2.destroy()
+        txt3.destroy()
+        txt4.destroy()
+        txt5.destroy()
+        entr1.destroy()
+        entr2.destroy()
+        entr3.destroy()
+        entr4.destroy()
+        entr5.destroy()
+        btn1.destroy()
+        btn2.destroy()
+        btn3.destroy()
+
+    createWidgets()
+
+  
+
 
 def main():
-    global fen
-    
-    fen = Tk()
-    fen.title("Equations resolver v1.3")
-    fen.geometry("260x200")
-    
-    menubar = Menu(fen)
+    global window, menubar
+    parser = OptionParser()
+    parser.add_option("-W", "--width", action="store", type="int", dest="windowWidth", help="Set width for your window")
+    parser.add_option("-H", "--height", action="store", type="int", dest="windowHeight", help="Set height for your window")
+    (options, args) = parser.parse_args()
+	
+    window = Tk()
+    window.title("1st and 2nd degree equations resolver")
+    windowSize = str(options.windowHeight)+'x'+str(options.windowWidth)
+    window.geometry(windowSize)
+    menubar = Menu(window)
     
     menu_equation= Menu(menubar, tearoff=0)
-    menubar.add_cascade(label="Équations", menu=menu_equation)
-    menu_equation.add_command(label="Équation du premier degré", command=equation1)
-    menu_equation.add_command(label="Équation du second degré", command=equation2)
+    menubar.add_cascade(label="Equation", menu=menu_equation)
+    menu_equation.add_command(label="1st degree", command=equation1)
+    menu_equation.add_command(label="2nd degree", command=equation2)
 
     menu_help= Menu(menubar, tearoff=0)
-    menubar.add_cascade(label="Help", menu=menu_help)
-    menu_help.add_command(label="Aide", command=aide)
-    menu_help.add_command(label="About E.R.", command=info)
+    menubar.add_cascade(label="?", menu=menu_help)
+    menu_help.add_command(label="Help", command=help)
+    menu_help.add_command(label="About", command=about)
     
-    fen.config(menu=menubar)
-    fen.mainloop()
+    window.config(menu=menubar)
+    window.mainloop()
+    
 
 main()
