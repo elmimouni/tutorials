@@ -39,7 +39,7 @@ function showAlertBox() {
 </html>
 ```
 
-2 - Save your file using the **.html** extension. (e.g. "HelloWorld.html").
+2 - Save your file using the **.html** extension. (e.g. "_HelloWorld.html_").
 
 3 - Go to where you saved your file and open it using it your favorite browser.
 
@@ -54,8 +54,18 @@ III - Let's examine this program
 
 This "Hello World!" program shows you how to use an **alert box** to display a message to the user.
 
-The part of the code above resposible for that is `**alert("Hello World! I am an alert box.");**`. Other than that, it is a typical HTML file.
+The part of the code above resposible for that is **`alert("Hello World! I am an alert box.");`**. Other than that, it is a typical HTML file.
 
-Most importantly, this example shows you how to include your Javascript code within your HTML file, using the `**<script></script>**` tag.
+Most importantly, this example shows you how to include your Javascript code within your HTML file, using the **`<script></script>`** tag.
 
-When you click on the button, the **onclick** attribute call the function **showAlertBox()**. You browser will look for the deifinition of the function inside the `**<script></script>**` tag. This function tells the browser to show an **alert box** that displays the message **Hello World! I am an alert box.**.
+When you click on the button, the **onclick** attribute call the function **showAlertBox()**. You browser will look for the definition of the function inside the **`<script></script>`** tag. the _keyword_ **function** is used to define a function in Javascript.
+
+```
+function functionName() {
+    // function behavior
+    ...
+}
+```
+_NB: We will talk about functions later in more details._
+
+Our function **showAlertBox()** tells the browser to show an **alert box** that displays the message **Hello World! I am an alert box.**.
